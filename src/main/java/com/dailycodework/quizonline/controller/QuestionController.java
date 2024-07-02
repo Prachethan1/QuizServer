@@ -5,7 +5,6 @@ import com.dailycodework.quizonline.service.IQuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +15,9 @@ import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-/**
- * @author Simpson Alfred
- */
 
-@CrossOrigin("http://localhost:5173")
+//@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://127.0.0.1:5173/")
 @RestController
 @RequestMapping("/api/quizzes")
 @RequiredArgsConstructor
@@ -67,17 +64,28 @@ public class QuestionController {
         return ResponseEntity.ok(subjects);
     }
 
-    @GetMapping("/quiz/fetch-questions-for-user")
-    public ResponseEntity<List<Question>> getQuestionsForUser(
-            @RequestParam Integer numOfQuestions, @RequestParam String subject){
-        List<Question> allQuestions = questionService.getQuestionsForUser(numOfQuestions, subject);
+//    @GetMapping("/quiz/fetch-questions-for-user")
+//    public ResponseEntity<List<Question>> getQuestionsForUser(
+//            @RequestParam Integer numOfQuestions, @RequestParam String subject){
+//        List<Question> allQuestions = questionService.getQuestionsForUser(numOfQuestions, subject);
+//
+//        List<Question> mutableQuestions = new ArrayList<>(allQuestions);
+//        Collections.shuffle(mutableQuestions);
+//
+//        int availableQuestions = Math.min(numOfQuestions, mutableQuestions.size());
+//        List<Question> randomQuestions = mutableQuestions.subList(0, availableQuestions);
+//        return ResponseEntity.ok(randomQuestions);
+//    }
+@GetMapping("/quiz/fetch-questions-for-user")
+public ResponseEntity<List<Question>> getQuestionsForUser(@RequestParam String subject){
+    List<Question> allQuestions = questionService.getQuestionsForUser(subject);
 
-        List<Question> mutableQuestions = new ArrayList<>(allQuestions);
-        Collections.shuffle(mutableQuestions);
+    List<Question> mutableQuestions = new ArrayList<>(allQuestions);
+    Collections.shuffle(mutableQuestions);
 
-        int availableQuestions = Math.min(numOfQuestions, mutableQuestions.size());
-        List<Question> randomQuestions = mutableQuestions.subList(0, availableQuestions);
-        return ResponseEntity.ok(randomQuestions);
-    }
+//    int availableQuestions = Math.min(mutableQuestions.size());
+//    List<Question> randomQuestions = mutableQuestions.subList(0, availableQuestions);
+    return ResponseEntity.ok(mutableQuestions);
+}
 
 }

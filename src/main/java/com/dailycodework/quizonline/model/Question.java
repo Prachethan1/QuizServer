@@ -7,9 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-/**
- * @author Simpson Alfred
- */
+
 @Getter
 @Setter
 @Entity

@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Simpson Alfred
- */
 
 @Service
 @RequiredArgsConstructor
@@ -59,8 +56,8 @@ public class QuestionService implements IQuestionService{
         questionRepository.deleteById(id);
     }
     @Override
-    public List<Question> getQuestionsForUser(Integer numOfQuestions, String subject) {
-        Pageable pageable = PageRequest.of(0, numOfQuestions);
-        return questionRepository.findBySubject(subject, pageable).getContent();
+    public List<Question> getQuestionsForUser(String subject) {
+        //Pageable pageable = PageRequest.of(0, numOfQuestions);
+        return questionRepository.findBySubject(subject);
     }
 }

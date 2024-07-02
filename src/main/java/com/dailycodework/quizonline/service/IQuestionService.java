@@ -6,9 +6,6 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author Simpson Alfred
- */
 
 public interface IQuestionService {
 
@@ -24,7 +21,7 @@ public interface IQuestionService {
 
     void  deleteQuestion(Long id);
 
-    List<Question> getQuestionsForUser(Integer numOfQuestions, String subject);
+    List<Question> getQuestionsForUser(String subject);
 
 
 }
