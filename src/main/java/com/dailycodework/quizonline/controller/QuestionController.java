@@ -17,7 +17,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 
 //@CrossOrigin("http://localhost:5173")
-@CrossOrigin("http://127.0.0.1:5173/")
+@CrossOrigin("https://quiz-application-taupe.vercel.app/")
 @RestController
 @RequestMapping("/api/quizzes")
 @RequiredArgsConstructor
